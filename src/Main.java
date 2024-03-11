@@ -1,3 +1,3 @@
 public class Main {
-    pascal siehst du das?
+    // this code will be in english
 }
