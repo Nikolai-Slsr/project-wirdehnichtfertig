@@ -1,7 +1,6 @@
-
-public class Main {
-    // this code will be in english
+public class Main{
     public static void main(){
+
 
     }
 }
