@@ -14,6 +14,8 @@ class GraphicPanel extends JPanel {
     private int width; //= getWidth();
     private int heigth; //= getHeight();
 
+    private UpdateManager _UpdateManager;
+
     private JFrame frame = new JFrame();
 
     private GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -45,6 +47,8 @@ class GraphicPanel extends JPanel {
     public GraphicPanel() {
         width = 1280;
         heigth = 720;
+
+        _UpdateManager = new UpdateManager();
 
 
         addMouseListener(new MouseAdapter() {
@@ -164,10 +168,10 @@ class GraphicPanel extends JPanel {
 
         Timer timer = new Timer(1, e -> {
 
-            if (wPressed){}
-            if (aPressed){}
-            if (sPressed){}
-            if (dPressed){}
+            if (wPressed){_UpdateManager.wPressed();}
+            if (aPressed){_UpdateManager.aPressed();}
+            if (sPressed){_UpdateManager.sPressed();}
+            if (dPressed){_UpdateManager.dPressed();}
             repaint();
         });
         timer.start();
