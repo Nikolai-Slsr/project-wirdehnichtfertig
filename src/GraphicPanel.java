@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 class GraphicPanel extends JPanel {
 
 
+
     private boolean mousePressed = false;
     private boolean mouseOnPanel = false;
     private int width; //= getWidth();
@@ -44,6 +45,8 @@ class GraphicPanel extends JPanel {
 
     Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
             cursorImg, new Point(0, 0), "blank cursor");
+
+
     public GraphicPanel() {
         width = 1280;
         heigth = 720;
@@ -178,17 +181,16 @@ class GraphicPanel extends JPanel {
 
     }
 
-
     public void giveFrame(JFrame frame){
         this.frame = frame;
     }
 
 
-
     @Override
-    protected void paintComponent(Graphics g) {
-
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        _UpdateManager.update(g2d);
 
     }
 

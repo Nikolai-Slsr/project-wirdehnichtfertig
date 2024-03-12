@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 public class Cam {
     private Point Position; // Global Position of Player Index 0 = x Index 1 = y
