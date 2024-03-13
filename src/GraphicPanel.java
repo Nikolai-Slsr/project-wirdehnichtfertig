@@ -181,11 +181,6 @@ class GraphicPanel extends JPanel {
 
     }
 
-    public void giveFrame(JFrame frame){
-        this.frame = frame;
-    }
-
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

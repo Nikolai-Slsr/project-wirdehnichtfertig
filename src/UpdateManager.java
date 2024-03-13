@@ -10,47 +10,38 @@ public class UpdateManager {
 
     //Constructor:
     public UpdateManager() {
-        Player1 = new Player();
-        //Camera1 = new Cam(new Point(0,0) , 1);
+        Player1 = new Player(new Vector2D(0,0), 0.1f);
+        Camera1 = new Cam(new Vector2D(0,0) , 1);
     }
 
 
     public void update(Graphics2D g2d){
         this.g2d = g2d;
+
         updatePlayer();
 
-
     }
+
     public void updatePlayer(){
-        Player1.updatePosition();
-        int [] PlayerPos = Player1.getPosition();
+        if(Player1.isPosUpdateNeeded()) {
+            Player1.updatePosition();
+        }
+        Vector2D PlayerPos = Player1.getPosition();
         g2d.setColor(Color.BLUE);
-        g2d.fillRect(PlayerPos[0],PlayerPos[1],20,20);
+        g2d.fillRect((int)PlayerPos.getX(), -(int)PlayerPos.getY(),20,20);
 
     }
     public void wPressed(){
-        double[] currentSpeed = Player1.getSpeed();
-        double[] Speed = new double[]{1,currentSpeed[1]};
-        Player1.setSpeed(Speed);
-
+        Player1.moveUp();
     }
     public void sPressed(){
-        double[] currentSpeed = Player1.getSpeed();
-        double[] Speed = new double[]{-1,currentSpeed[1]};
-        Player1.setSpeed(Speed);
-        System.out.println("Update Speed");
+        Player1.moveDown();
     }
     public void aPressed(){
-        double[] currentSpeed = Player1.getSpeed();
-        double[] Speed = new double[]{currentSpeed[0],-1};
-        Player1.setSpeed(Speed);
-
+        Player1.moveLeft();
     }
     public void dPressed(){
-        double[] currentSpeed = Player1.getSpeed();
-        double[] Speed = new double[]{currentSpeed[0],1};
-        Player1.setSpeed(Speed);
-
+        Player1.moveRight();
     }
 
 
