@@ -15,6 +15,18 @@ public class Calc {
         return new Vector2D(a.getX() * b, a.getY() * b);
     }
 
+    public Vector2D multEachByEachVec2D( Vector2D a, Vector2D b){
+        return new Vector2D(a.getX() * b.getX(), a.getY() * b.getY());
+    }
+
+    public Vector2D divVec2D( Vector2D a, float b){
+        return new Vector2D(a.getX() / b, a.getY() / b);
+    }
+
+    public Vector2D divEachByEachVec2D( Vector2D a, Vector2D b){
+        return new Vector2D(a.getX() / b.getX(), a.getY() / b.getY());
+    }
+
     public float dot(Vector2D a, Vector2D b){
         return a.getX() * b.getX() + a.getY() * b.getY();
     }

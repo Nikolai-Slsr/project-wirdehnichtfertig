@@ -5,7 +5,7 @@ public class UpdateManager {
     //Attributes:
     private Player Player1;
     private Cam Camera1;
-
+    private TileMap tileMap1;
     private Graphics2D g2d;
     private Vector2D Windowsize = new Vector2D(1280,720);
     private GraphicPanel GP;
