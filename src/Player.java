@@ -1,4 +1,5 @@
 import javax.swing.text.Position;
+import java.awt.*;
 
 public class Player {
     private Vector2D Position;
@@ -22,6 +23,13 @@ public class Player {
     /** This method determines if an update of the position is even needed. True upon DeltaPos being not (0,0) */
     public boolean isPosUpdateNeeded(){
         return DeltaPosition.is(new Vector2D(0,0));
+    }
+
+    public void draw(Graphics2D g2d, Vector2D camPos, float CamDist, Vector2D WindowSize){
+        Vector2D distanceVec = calc.subVec2D(Position,camPos);
+        Vector2D localPos = calc.divVec2D(distanceVec, CamDist);
+        g2d.setColor(Color.BLUE);
+        g2d.fillRect((int)(localPos.getX()+(WindowSize.getY()/2)), (int)(localPos.getY()+(WindowSize.getY()/2)), 20 ,30);
     }
 
     //Move methods:

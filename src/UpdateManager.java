@@ -7,30 +7,35 @@ public class UpdateManager {
     private Cam Camera1;
 
     private Graphics2D g2d;
+    private Vector2D Windowsize = new Vector2D(1280,720);
+    private GraphicPanel GP;
 
     //Constructor:
-    public UpdateManager() {
+    public UpdateManager(GraphicPanel GP) {
+
         Player1 = new Player(new Vector2D(0,0), 0.1f);
-        Camera1 = new Cam(new Vector2D(0,0) , 1);
+        Camera1 = new Cam(new Vector2D(0,0) , 1, 10);
+        tileMap1 = new TileMap(new Vector2D(40, 40));
+        this.GP = GP;
+        Windowsize.setXY(GP.getWidth(),GP.getHeigth());
+
     }
 
 
+
+    // Main Update Method:
+    // This is called every Frame:
     public void update(Graphics2D g2d){
         this.g2d = g2d;
-
-        updatePlayer();
-
+        Windowsize.setXY(GP.getWidth(),GP.getHeigth());
+        Camera1.update(Player1.getPosition());
+        Player1.updatePosition();
+        tileMap1.drawTiles(g2d,Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
+        Player1.draw(g2d , Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
     }
 
-    public void updatePlayer(){
-        if(Player1.isPosUpdateNeeded()) {
-            Player1.updatePosition();
-        }
-        Vector2D PlayerPos = Player1.getPosition();
-        g2d.setColor(Color.BLUE);
-        g2d.fillRect((int)PlayerPos.getX(), -(int)PlayerPos.getY(),20,20);
 
-    }
+    // Implement Key Presses from Graphics Panel
     public void wPressed(){
         Player1.moveUp();
     }
@@ -45,6 +50,11 @@ public class UpdateManager {
     }
 
 
+
+
+
+
+    // Getter and Setter Methods
     public Player getPlayer1() {
         return Player1;
     }
@@ -63,5 +73,13 @@ public class UpdateManager {
 
     public void setG2d(Graphics2D g2d) {
         this.g2d = g2d;
+    }
+
+    public Vector2D getWindowsize() {
+        return Windowsize;
+    }
+
+    public void setWindowsize(Vector2D windowsize) {
+        Windowsize = windowsize;
     }
 }

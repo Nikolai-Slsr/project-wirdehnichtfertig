@@ -51,9 +51,7 @@ class GraphicPanel extends JPanel {
         width = 1280;
         heigth = 720;
 
-        _UpdateManager = new UpdateManager();
-
-
+        _UpdateManager = new UpdateManager(this);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -185,8 +183,24 @@ class GraphicPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        _UpdateManager.update(g2d);
+        _UpdateManager.update(g2d);  //
 
     }
 
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeigth() {
+        return heigth;
+    }
+
+    public void setHeigth(int heigth) {
+        this.heigth = heigth;
+    }
 }
