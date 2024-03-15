@@ -12,8 +12,8 @@ class GraphicPanel extends JPanel {
 
     private boolean mousePressed = false;
     private boolean mouseOnPanel = false;
-    private int width = 1280; //= getWidth();
-    private int heigth = 720; //= getHeight();
+    private int width; //= getWidth();
+    private int heigth; //= getHeight();
 
     private UpdateManager _UpdateManager;
 

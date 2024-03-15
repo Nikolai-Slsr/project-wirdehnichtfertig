@@ -7,10 +7,10 @@ public class Cam {
 
     private final Calc calc = new Calc();
 
-    private int CamDist;
+    private float CamDist;
     private float mass = 1; // mass of the Cam -- How sluggish/quick  - The Bigger Mass the heavier the Camera Movement feels
 
-    public Cam( Vector2D position, float mass, int CamDist) { // Constructor
+    public Cam( Vector2D position, float mass, float CamDist) { // Constructor
         this.Position = position;
         this.mass = mass;
         this.CamDist = CamDist;
@@ -22,8 +22,8 @@ public class Cam {
 
         Speed.setXY(Speed.getX() + Acceleration.getX() * 0.01f, Speed.getY() + Acceleration.getY() * 0.01f); // Update Speed this is dependent on the delta Time 0,01 s == 10 ms
 
-        Position.setXY(Position.getX() + Speed.getX(), Position.getY() + Speed.getY());// Update Position
-
+        //Position.setXY(Position.getX() + Speed.getX(), Position.getY() + Speed.getY());// Update Position
+        Position.setXY(PlayerPos);
     }
     public void reset(){  // Reset Momentum
         Acceleration.setXY(0,0);
@@ -60,7 +60,7 @@ public class Cam {
         Acceleration = acceleration;
     }
 
-    public int getCamDist() {
+    public float getCamDist() {
         return CamDist;
     }
 

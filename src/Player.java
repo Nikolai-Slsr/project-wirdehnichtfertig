@@ -29,15 +29,15 @@ public class Player {
         Vector2D distanceVec = calc.subVec2D(Position,camPos);
         Vector2D localPos = calc.divVec2D(distanceVec, CamDist);
         g2d.setColor(Color.BLUE);
-        g2d.fillRect((int)(localPos.getX()+(WindowSize.getY()/2)), (int)(localPos.getY()+(WindowSize.getY()/2)), 20 ,30);
+        g2d.fillRect((int)(localPos.getX()+(WindowSize.getX()/2)), (int)(localPos.getY()+(WindowSize.getY()/2)), (int)(20 / CamDist) ,(int)(30 / CamDist));
     }
 
     //Move methods:
 
     public void moveRight(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(1,0));}
     public void moveLeft(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(-1,0));}
-    public void moveUp(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(0,1));}
-    public void moveDown(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(0,-1));}
+    public void moveUp(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(0,-1));}
+    public void moveDown(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(0,1));}
 
 
     public Vector2D getPosition() {

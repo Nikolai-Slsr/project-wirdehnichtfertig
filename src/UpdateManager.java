@@ -14,10 +14,11 @@ public class UpdateManager {
     public UpdateManager(GraphicPanel GP) {
 
         Player1 = new Player(new Vector2D(0,0), 0.1f);
-        Camera1 = new Cam(new Vector2D(0,0) , 1, 10);
+        Camera1 = new Cam(new Vector2D(0,0) , 1, 0.1f);
         tileMap1 = new TileMap(new Vector2D(40, 40));
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
+        System.out.println(Windowsize.getX());
 
     }
 
@@ -28,8 +29,11 @@ public class UpdateManager {
     public void update(Graphics2D g2d){
         this.g2d = g2d;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
+        if (Player1.isPosUpdateNeeded())
+        {
+            Player1.updatePosition();
+        }
         Camera1.update(Player1.getPosition());
-        Player1.updatePosition();
         tileMap1.drawTiles(g2d,Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
         Player1.draw(g2d , Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
     }
