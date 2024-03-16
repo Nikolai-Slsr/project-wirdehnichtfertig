@@ -64,7 +64,7 @@ public class Cam {
         return CamDist;
     }
 
-    public void setCamDist(int camDist) {
+    public void setCamDist(float camDist) {
         CamDist = camDist;
     }
 

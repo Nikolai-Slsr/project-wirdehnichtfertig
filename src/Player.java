@@ -29,7 +29,7 @@ public class Player {
         Vector2D distanceVec = calc.subVec2D(Position,camPos);
         Vector2D localPos = calc.divVec2D(distanceVec, CamDist);
         g2d.setColor(Color.BLUE);
-        g2d.fillRect((int)(localPos.getX()+(WindowSize.getX()/2)), (int)(localPos.getY()+(WindowSize.getY()/2)), (int)(20 / CamDist) ,(int)(30 / CamDist));
+        g2d.fillRect((int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (15/ CamDist)), (int)(20 / CamDist) ,(int)(30 / CamDist));
     }
 
     //Move methods:
