@@ -17,13 +17,17 @@ public class Cam {
     }
 
     public void update(Vector2D PlayerPos){ // Update Physics
-        Vector2D Force = calc.subVec2D(Position,PlayerPos); // Calculate Distance to Player and convert to a Force pointing to the player
-        Acceleration.setXY((float)Math.pow(PlayerPos.getX(),2) * mass,(float)Math.pow(PlayerPos.getY(), 2) * mass); // Update Acceleration
-
+        Vector2D Force = calc.subVec2D(PlayerPos,Position);
+        if (Force.getX()<5 && Force.getX()>-5){Speed.setX(Speed.getX()/2);}
+        if (Force.getY()<5 && Force.getX()>-5){Speed.setY(Speed.getY()/2);}
+        if (Speed.getX()<20 && Speed.getX()>(-20)){Speed.setX(0);}
+        if (Speed.getY()<20 && Speed.getX()>(-20)){Speed.setY(0);}
+        Force.setXY((float)(Math.pow(Force.getX(),3)*0.01),(float)(Math.pow(Force.getY(),3)*0.01));// Calculate Distance to Player and convert to a Force pointing to the player
+        Acceleration.setXY((float)Force.getX() / mass,(float)Force.getY() / mass); // Update Acceleration
         Speed.setXY(Speed.getX() + Acceleration.getX() * 0.01f, Speed.getY() + Acceleration.getY() * 0.01f); // Update Speed this is dependent on the delta Time 0,01 s == 10 ms
 
-        //Position.setXY(Position.getX() + Speed.getX(), Position.getY() + Speed.getY());// Update Position
-        Position.setXY(PlayerPos);
+        Position.setXY(Position.getX() + Speed.getX(), Position.getY() + Speed.getY());// Update Position
+        //Position.setXY(PlayerPos);
     }
     public void reset(){  // Reset Momentum
         Acceleration.setXY(0,0);
