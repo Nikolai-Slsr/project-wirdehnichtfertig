@@ -28,7 +28,7 @@ public class UpdateManager {
     public void update(Graphics2D g2d){
         this.g2d = g2d;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
-        System.out.println(Windowsize.getY());
+
         if (Player1.isPosUpdateNeeded())
         {
             Player1.updatePosition();
@@ -51,6 +51,10 @@ public class UpdateManager {
     }
     public void dPressed(){
         Player1.moveRight();
+    }
+
+    public void spacePressed(){
+
     }
 
 
