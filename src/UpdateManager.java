@@ -52,6 +52,7 @@ public class UpdateManager {
     public void dPressed(){
         Player1.moveRight();
     }
+    public void ShiftPressed() {Player1.SpeedUp();}
 
 
 
