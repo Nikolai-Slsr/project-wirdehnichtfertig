@@ -6,29 +6,27 @@ import java.io.IOException;
 
 // This will store Texture, Material, and Color
 public class Material {
-
-    private final BufferedImage grass;
-
-    {
-        try {
-            grass = ImageIO.read(new File("Textures/Tiles/Grass.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    // Attributes
+    private final BufferedImage texture;
     private Color color = null;
 
-    public Material(Color color) {
+    public Material(Color color, BufferedImage texture) { // Constructor
         this.color = color;
-    }
+        this.texture = texture;
 
+    } // Constructor
+
+
+
+
+    // Getter and Setter Methods
     public Color getColor() {
         return color;
     }
     public void setColor(Color color) {
         this.color = color;
     }
-    public BufferedImage getGrass() {
-        return grass;
+    public BufferedImage getTexture() {
+        return texture;
     }
 }

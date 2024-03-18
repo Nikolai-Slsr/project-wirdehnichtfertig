@@ -12,19 +12,19 @@ public class Player {
 
     private final Calc calc = new Calc();
 
-    BufferedImage image;
+    BufferedImage image; // Read Player Sprite
 
     {
         try {
-            image = ImageIO.read(new File("Textures/Player/char_front.png"));
+            image = ImageIO.read(new File("Textures/Player/char_front.png"));  // Path to Texture
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e);  // Avoid Errors
         }
     }
 
 
     //constructor
-    public Player(Vector2D Position, float Speed) {
+    public Player(Vector2D Position, float Speed) { // Constructor
         this.Position = Position;
         this.Speed = Speed;
     }
@@ -43,8 +43,8 @@ public class Player {
     public void draw(Graphics2D g2d, Vector2D camPos, float CamDist, Vector2D WindowSize){
         Vector2D distanceVec = calc.subVec2D(Position,camPos);
         Vector2D localPos = calc.divVec2D(distanceVec, CamDist);
-        g2d.setColor(Color.BLUE);
-        g2d.drawImage(image, (int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (15/ CamDist)),(int)(16 / CamDist) ,(int)(16 / CamDist),null);
+        //g2d.setColor(Color.BLUE);
+        g2d.drawImage(image, (int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (16/ CamDist)),(int)(16 / CamDist) ,(int)(16 / CamDist),null);
         //g2d.fillRect((int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (15/ CamDist)), (int)(20 / CamDist) ,(int)(30 / CamDist));
     }
 
@@ -55,7 +55,7 @@ public class Player {
     public void moveUp(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(0,-1));}
     public void moveDown(){DeltaPosition = calc.addVec2D(DeltaPosition, new Vector2D(0,1));}
 
-
+    // Getter and Setter Methods
     public Vector2D getPosition() {
         return Position;
     }

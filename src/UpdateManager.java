@@ -8,14 +8,14 @@ public class UpdateManager {
     private TileMap tileMap1;
     private Graphics2D g2d;
     private Vector2D Windowsize = new Vector2D(1280,720);
-    private GraphicPanel GP;
+    private final GraphicPanel GP;
 
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
 
         Player1 = new Player(new Vector2D(0,0), 0.1f);
         Camera1 = new Cam(new Vector2D(0,0) , 100, 0.3f);
-        tileMap1 = new TileMap(new Vector2D(40, 40));
+        tileMap1 = new TileMap(new Vector2D(50, 50));
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
         System.out.println(Windowsize.getX());
