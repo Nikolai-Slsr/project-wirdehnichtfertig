@@ -47,4 +47,12 @@ public class Calc {
 
         );
     }
+    public Vector2D round(Vector2D a){
+        return new Vector2D(
+                Math.round(a.getX()),
+                Math.round(a.getY())
+
+        );
+
+    }
 }

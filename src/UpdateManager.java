@@ -14,7 +14,7 @@ public class UpdateManager {
     public UpdateManager(GraphicPanel GP) {
 
         Player1 = new Player(new Vector2D(0,0), 0.1f);
-        Camera1 = new Cam(new Vector2D(0,0) , 100, 0.3f);
+        Camera1 = new Cam(new Vector2D(0,0) , 100, 0.2f);
         tileMap1 = new TileMap(new Vector2D(50, 50));
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
