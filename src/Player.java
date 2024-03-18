@@ -1,5 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.text.Position;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Player {
     private Vector2D Position;
@@ -7,6 +11,17 @@ public class Player {
     private float Speed;     // Speed while player is moving
 
     private final Calc calc = new Calc();
+
+    BufferedImage image;
+
+    {
+        try {
+            image = ImageIO.read(new File("Textures/Player/char_front.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     //constructor
     public Player(Vector2D Position, float Speed) {
@@ -29,7 +44,8 @@ public class Player {
         Vector2D distanceVec = calc.subVec2D(Position,camPos);
         Vector2D localPos = calc.divVec2D(distanceVec, CamDist);
         g2d.setColor(Color.BLUE);
-        g2d.fillRect((int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (15/ CamDist)), (int)(20 / CamDist) ,(int)(30 / CamDist));
+        g2d.drawImage(image, (int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (15/ CamDist)),(int)(16 / CamDist) ,(int)(16 / CamDist),null);
+        //g2d.fillRect((int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (15/ CamDist)), (int)(20 / CamDist) ,(int)(30 / CamDist));
     }
 
     //Move methods:
