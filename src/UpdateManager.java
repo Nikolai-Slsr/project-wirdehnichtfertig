@@ -18,7 +18,6 @@ public class UpdateManager {
         tileMap1 = new TileMap(new Vector2D(50, 50));
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
-        System.out.println(Windowsize.getX());
 
     }
 
@@ -29,6 +28,7 @@ public class UpdateManager {
     public void update(Graphics2D g2d){
         this.g2d = g2d;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
+        System.out.println(Windowsize.getY());
         if (Player1.isPosUpdateNeeded())
         {
             Player1.updatePosition();
@@ -52,7 +52,6 @@ public class UpdateManager {
     public void dPressed(){
         Player1.moveRight();
     }
-    public void ShiftPressed() {Player1.SpeedUp();}
 
 
 

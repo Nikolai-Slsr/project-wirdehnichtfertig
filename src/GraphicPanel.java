@@ -167,8 +167,8 @@ class GraphicPanel extends JPanel {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                width = getWidth();
-                heigth = getHeight();
+                width = GraphicPanel.super.getWidth();
+                heigth = GraphicPanel.super.getHeight();
             }
         });
 
@@ -180,7 +180,6 @@ class GraphicPanel extends JPanel {
             if (aPressed){_UpdateManager.aPressed();}
             if (sPressed){_UpdateManager.sPressed();}
             if (dPressed){_UpdateManager.dPressed();}
-            if (ShiftPressed){_UpdateManager.ShiftPressed();}
             repaint();
         });
         timer.start();
