@@ -12,7 +12,7 @@ public class UpdateManager {
 
     private long deltaTime = 1;
     private long lastTime = System.nanoTime();
-    private int frameRate = 60;
+
 
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
@@ -38,7 +38,7 @@ public class UpdateManager {
         {
             Player1.updatePosition(deltaTime);
         }
-        Camera1.update(Player1.getPosition());
+        Camera1.update(Player1.getPosition(), deltaTime);
         tileMap1.drawTiles(g2d,Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
         Player1.draw(g2d , Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
     }
@@ -98,11 +98,7 @@ public class UpdateManager {
     public long dT()
     {
         deltaTime = System.nanoTime() - lastTime;
-        //System.out.println(deltaTime);
-        //deltaTime *= frameRate;
-        //System.out.println(deltaTime / 1000000);
         lastTime = System.nanoTime();
-
         return deltaTime / 1000000;
     }
 }

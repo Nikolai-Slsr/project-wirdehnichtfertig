@@ -14,6 +14,7 @@ class GraphicPanel extends JPanel {
     private boolean mouseOnPanel = false;
     private int width; //= getWidth();
     private int heigth; //= getHeight();
+    private final int maxMS = 5;
 
     private UpdateManager _UpdateManager;
 
@@ -174,7 +175,7 @@ class GraphicPanel extends JPanel {
 
 
 
-        Timer timer = new Timer(1, e -> {
+        Timer timer = new Timer(maxMS , e -> {
 
             if (wPressed){_UpdateManager.wPressed();}
             if (aPressed){_UpdateManager.aPressed();}

@@ -16,14 +16,14 @@ public class Cam {
         this.CamDist = CamDist;
     }
 
-    public void update(Vector2D PlayerPos){ // Update Physics
+    public void update(Vector2D PlayerPos, long dT){ // Update Physics
         Vector2D Force = calc.subVec2D(PlayerPos,Position);  // Calculate Force from the Cam to the Player
 
         if (Force.getX()<2 && Force.getX()>-2){Speed.setX(Speed.getX()/2);}       // Dampen Speed near Player to avoid jittering
         if (Force.getY()<2 && Force.getX()>-2){Speed.setY(Speed.getY()/2);}
         if (Speed.getX()<10 && Speed.getX()>(-10)){Speed.setX(0);}      // When Seed to slow set it to 0
         if (Speed.getY()<10 && Speed.getX()>(-10)){Speed.setY(0);}
-        Force.setXY((float)(Math.pow(Force.getX(),3)*0.01),(float)(Math.pow(Force.getY(),3)*0.01));// Calculate Distance to Player and convert to a Force pointing to the player
+        Force.setXY((float)(Math.pow(Force.getX(),3)*0.01 * dT),(float)(Math.pow(Force.getY(),3)*0.01 * dT));// Calculate Distance to Player and convert to a Force pointing to the player
         float a = 0.0001f;
         float b = 0.0001f;
 
