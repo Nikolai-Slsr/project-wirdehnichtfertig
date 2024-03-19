@@ -9,6 +9,7 @@ public class Player {
     private Vector2D Position;
     private Vector2D DeltaPosition = new Vector2D(0,0);  //Vector used for movement. As player moves per frame, vectors for each input get added together and normalized.
     private float Speed;     // Speed while player is moving
+    private float dT;
 
     private final Calc calc = new Calc();
 
@@ -30,9 +31,10 @@ public class Player {
     }
 
     //
-    public void updatePosition(){
-        Position.setXY(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed))); //Adds DeltaPosition to Position to let player gain movement.
+    public void updatePosition(float dT){
+        Position.setXY(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT))); //Adds DeltaPosition to Position to let player gain movement.
         DeltaPosition.setXY(0,0);    //resets DeltaPosition.
+        //System.out.println(dT);
     }
 
     /** This method determines if an update of the position is even needed. True upon DeltaPos being not (0,0) */

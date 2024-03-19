@@ -23,12 +23,12 @@ public class Cam {
         if (Force.getY()<2 && Force.getX()>-2){Speed.setY(Speed.getY()/2);}
         if (Speed.getX()<10 && Speed.getX()>(-10)){Speed.setX(0);}      // When Seed to slow set it to 0
         if (Speed.getY()<10 && Speed.getX()>(-10)){Speed.setY(0);}
-        //Force.setXY((float)(Math.pow(Force.getX(),3)*0.01),(float)(Math.pow(Force.getY(),3)*0.01));// Calculate Distance to Player and convert to a Force pointing to the player
-        float a = 1;
-        float b = 1;
+        Force.setXY((float)(Math.pow(Force.getX(),3)*0.01),(float)(Math.pow(Force.getY(),3)*0.01));// Calculate Distance to Player and convert to a Force pointing to the player
+        float a = 0.0001f;
+        float b = 0.0001f;
 
         //Calc Accel by Force with following formular: a*(x/√(x^2)) * (b^-x^2 + 1)
-        Force.setXY((float)( a * (Force.getX() / Math.sqrt(Force.getX() * Force.getX())) * (Math.pow(b,- Math.pow(Force.getX(), 2) ) + 1) ), (float)( a * (Force.getY() / Math.sqrt(Force.getY() * Force.getY())) * (Math.pow(b,- Math.pow(Force.getY(), 2) ) + 1) ) );
+        //Force.setXY((float)( a * (Force.getX() / Math.sqrt(Force.getX() * Force.getX())) * (Math.pow(b,- Math.pow(Force.getX(), 2) ) + 1) ), (float)( a * (Force.getY() / Math.sqrt(Force.getY() * Force.getY())) * (Math.pow(b,- Math.pow(Force.getY(), 2) ) + 1) ) );
         Acceleration.setXY((float)Force.getX() / mass,(float)Force.getY() / mass); // Update Acceleration
         Speed.setXY(Speed.getX() + Acceleration.getX() * 0.01f, Speed.getY() + Acceleration.getY() * 0.01f); // Update Speed this is dependent on the delta Time 0,01 s == 10 ms
 

@@ -10,6 +10,10 @@ public class UpdateManager {
     private Vector2D Windowsize = new Vector2D(1280,720);
     private final GraphicPanel GP;
 
+    private long deltaTime = 1;
+    private long lastTime = System.nanoTime();
+    private int frameRate = 60;
+
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
 
@@ -26,12 +30,13 @@ public class UpdateManager {
     // Main Update Method:
     // This is called every Frame:
     public void update(Graphics2D g2d){
+        deltaTime = dT();
         this.g2d = g2d;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
 
         if (Player1.isPosUpdateNeeded())
         {
-            Player1.updatePosition();
+            Player1.updatePosition(deltaTime);
         }
         Camera1.update(Player1.getPosition());
         tileMap1.drawTiles(g2d,Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
@@ -89,5 +94,15 @@ public class UpdateManager {
 
     public void setWindowsize(Vector2D windowsize) {
         Windowsize = windowsize;
+    }
+    public long dT()
+    {
+        deltaTime = System.nanoTime() - lastTime;
+        //System.out.println(deltaTime);
+        //deltaTime *= frameRate;
+        //System.out.println(deltaTime / 1000000);
+        lastTime = System.nanoTime();
+
+        return deltaTime / 1000000;
     }
 }
