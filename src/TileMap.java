@@ -21,7 +21,7 @@ public class TileMap {
         {
             try {
                 dirt = ImageIO.read(new File("Textures/Tiles/Dirt.png"));  // Path to Texture
-                grass = ImageIO.read(new File("Textures/Tiles/Grass.png"));  // Path to Texture
+                grass = ImageIO.read(new File("Textures/Tiles/grass1.png"));  // Path to Texture
             } catch (IOException e) {
                 throw new RuntimeException(e);  // Avoid Errors
             }
