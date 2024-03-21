@@ -33,6 +33,7 @@ class GraphicPanel extends JPanel {
     private boolean sPressed = false;
     private boolean dPressed = false;
     private boolean ShiftPressed = false;
+    private boolean spacePressed = false;
 
     {
         try {
@@ -131,6 +132,9 @@ class GraphicPanel extends JPanel {
                 if(e.getKeyCode() == 16) {
                     ShiftPressed = true;
                 }
+                if(e.getKeyChar() == ' '){
+                    spacePressed = true;
+                }
 
 
 
@@ -157,6 +161,9 @@ class GraphicPanel extends JPanel {
                 if(e.getKeyCode() == 16) {
                     ShiftPressed = false;
                 }
+                if(e.getKeyChar() == ' '){
+                    spacePressed = false;
+                }
 
 
             }
@@ -181,6 +188,7 @@ class GraphicPanel extends JPanel {
             if (aPressed){_UpdateManager.aPressed();}
             if (sPressed){_UpdateManager.sPressed();}
             if (dPressed){_UpdateManager.dPressed();}
+            if (spacePressed){_UpdateManager.spacePressed();}
             repaint();
         });
         timer.start();

@@ -17,7 +17,7 @@ public class UpdateManager {
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
 
-        Player1 = new Player(new Vector2D(0,0), 0.075f);
+        Player1 = new Player(new Vector2D(0,0), 0.075f, 10, 2000);
         Camera1 = new Cam(new Vector2D(0,0) , 100, 0.2f);
         tileMap1 = new TileMap(new Vector2D(50, 50));
         this.GP = GP;
@@ -57,10 +57,8 @@ public class UpdateManager {
     public void dPressed(){
         Player1.moveRight();
     }
+    public void spacePressed(){ Player1.dash();}
 
-    public void spacePressed(){
-
-    }
 
 
 
