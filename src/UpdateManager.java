@@ -17,9 +17,9 @@ public class UpdateManager {
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
 
-        Player1 = new Player(new Vector2D(0,0), 0.075f, 10, 2000);
         Camera1 = new Cam(new Vector2D(0,0) , 100, 0.2f);
         tileMap1 = new TileMap(new Vector2D(50, 50));
+        Player1 = new Player(new Vector2D(100,100), 0.075f, 10, 100, tileMap1);
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
 
@@ -42,6 +42,9 @@ public class UpdateManager {
         tileMap1.drawTiles(g2d,Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
         Player1.draw(g2d , Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
     }
+
+
+
 
 
     // Implement Key Presses from Graphics Panel

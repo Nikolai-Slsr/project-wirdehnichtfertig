@@ -18,7 +18,6 @@ public class Main {
 
             Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
                     cursorImg, new Point(0, 0), "blank cursor");
-
             //frame.getContentPane().setCursor(blankCursor);
 
             frame.setVisible(true);

@@ -55,4 +55,10 @@ public class Calc {
         );
 
     }
+    public Vector2D absolutValue(Vector2D a){
+        return new Vector2D(
+                Math.abs(a.getX()),
+                Math.abs(a.getY())
+        );
+    }
 }

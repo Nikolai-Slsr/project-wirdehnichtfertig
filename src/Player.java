@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public class Player {
     private Vector2D Position;
+    private Collision collision = new Collision();
+    private Vector2D Hitbox = new Vector2D(12,16);
     private Vector2D DeltaPosition = new Vector2D(0,0);  //Vector used for movement. As player moves per frame, vectors for each input get added together and normalized.
     private float Speed;     // Speed while player is moving
 
@@ -15,6 +17,8 @@ public class Player {
     private long lastDashTime = 0;
     private long dashIntervall;
     private boolean isDashing = false;
+
+    private TileMap TileMap;
 
     private float dT;
 
@@ -32,21 +36,24 @@ public class Player {
 
 
     //constructor
-    public Player(Vector2D Position, float Speed, float dashFactor, long dashIntervall) { // Constructor
+    public Player(Vector2D Position, float Speed, float dashFactor, long dashIntervall, TileMap TileMap ) { // Constructor
         this.Position = Position;
         this.Speed = Speed;
         this.dashFactor = dashFactor;
         this.dashIntervall = dashIntervall;
+        this.TileMap = TileMap;
     }
 
     //
     public void updatePosition(float dT){
-        Position.setXY(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor))); //Adds DeltaPosition to Position to let player gain movement.
-        DeltaPosition.setXY(0,0);    //resets DeltaPosition.
-        if (lastDashTime < System.currentTimeMillis() - 40  && isDashing){
-            currentDashFactor = 1;
-            isDashing = false;
-        }
+        if(!collision.isColliding(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)){
+            Position.setXY(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor))); //Adds DeltaPosition to Position to let player gain movement.
+            DeltaPosition.setXY(0,0);    //resets DeltaPosition.
+            if (lastDashTime < System.currentTimeMillis() - 40  && isDashing){
+                currentDashFactor = 1;
+                isDashing = false;
+            }}
+
     }
 
     /** This method determines if an update of the position is even needed. True upon DeltaPos being not (0,0) */
@@ -57,7 +64,7 @@ public class Player {
     public void draw(Graphics2D g2d, Vector2D camPos, float CamDist, Vector2D WindowSize){
         Vector2D distanceVec = calc.subVec2D(Position,camPos);
         Vector2D localPos = calc.divVec2D(distanceVec, CamDist);
-        g2d.drawImage(image, (int)(localPos.getX()+(WindowSize.getX()/2) - (10 / CamDist)) , (int)(localPos.getY()+(WindowSize.getY()/2) - (16/ CamDist)),(int)(16 / CamDist) ,(int)(16 / CamDist),null);
+        g2d.drawImage(image, (int)(localPos.getX()+(WindowSize.getX()/2)) , (int)(localPos.getY()+(WindowSize.getY()/2)),(int)(16 / CamDist) ,(int)(16 / CamDist),null);
     }
 
     //Move methods:
@@ -81,6 +88,10 @@ public class Player {
     public Vector2D getPosition() {
         return Position;
     }
+    public Vector2D getHitbox() {
+        return Hitbox;
+    }
+    public Vector2D getCenterPosition(){return calc.addVec2D(getPosition(), new Vector2D(8, 8)); }
 
     public void setPosition(float x, float y) {
         Position.setXY(x,y);

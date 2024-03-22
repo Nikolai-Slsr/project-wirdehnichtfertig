@@ -15,7 +15,10 @@ public class TileMap {
 
     Calc  calc = new Calc();
     private ArrayList<ArrayList<Tile>> tileList = new ArrayList<>(); //Array that saves the whole tilemap with all it's tiles. tileList[Line][Collum]
+    private ArrayList<Tile> collisionMap = new ArrayList<>(); //Array that saves only Tiles that are relevant for Collision
 
+
+    //Constructor
     public TileMap(Vector2D mapSize) { // Constructor
         this.mapSize = mapSize;
         {
@@ -27,26 +30,49 @@ public class TileMap {
             }
         }
         generateDefaultMap();
+        generateCollisionMap();
     }
 
+
+
+
+    //Generators:
     public void generateDefaultMap(){
         for(int Line = 0; Line < mapSize.getY(); Line++){
             tileList.add(new ArrayList<Tile>());
             for(int Collum = 0; Collum < mapSize.getX(); Collum++){
-                if (Collum == 0 || Line == 0){tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, dirt), new Properties(new Vector2D(16, 16))));}
+                if (Line == 0){tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, dirt), new Properties(new Vector2D(16, 16),true)));}
                 else {
-                    tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, grass), new Properties(new Vector2D(16, 16))));
+                    tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, grass), new Properties(new Vector2D(16, 16), false)));
                 }
             }
         }
 
     }
-    public void drawTiles(Graphics2D g2d, Vector2D camPos, float camDist, Vector2D WindowSize){
+    public void generateCollisionMap(){
         for(ArrayList<Tile> Line: tileList){
             for(Tile tile : Line){
-                tile.draw(g2d, camPos, camDist,WindowSize);
+                if(tile.getProperties().getCollision()){collisionMap.add(tile);}
+            }
+        }
+        System.out.println(collisionMap.size());
+
+    }
+
+
+    //Methods:
+    public void drawTiles(Graphics2D g2d, Vector2D camPos, float camDist, Vector2D WindowSize){
+            for(ArrayList<Tile> Line: tileList){
+               for(Tile tile : Line){
+                   tile.draw(g2d, camPos, camDist,WindowSize);
+               }
             }
         }
 
+
+    // Getter and Setter Methods
+    public ArrayList<Tile> getCollisionMap() {
+        return collisionMap;
     }
+
 }

@@ -2,9 +2,13 @@
 public class Properties {
     private Vector2D Size;  // Size of an Object
 
-    public Properties(Vector2D size) {
+
+    private Boolean Collision;
+
+    public Properties(Vector2D size, boolean collision) {     // Constructor
         Size = size;
-    } // Constructor
+        this.Collision = collision;
+    }
 
     // Getter and Setter Methods
     public Vector2D getSize() {
@@ -14,4 +18,6 @@ public class Properties {
     public void setSize(Vector2D size) {
         Size = size;
     }
+    public Boolean getCollision() {return Collision;}
+
 }
