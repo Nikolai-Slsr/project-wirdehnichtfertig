@@ -46,7 +46,7 @@ public class Player {
 
     //
     public void updatePosition(float dT){
-        if(!collision.isColliding(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)){
+        if(!collision.isCollidingTiles(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)){
             Position.setXY(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor))); //Adds DeltaPosition to Position to let player gain movement.
             DeltaPosition.setXY(0,0);    //resets DeltaPosition.
             if (lastDashTime < System.currentTimeMillis() - 40  && isDashing){
