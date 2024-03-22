@@ -41,7 +41,7 @@ public class TileMap {
         for(int Line = 0; Line < mapSize.getY(); Line++){
             tileList.add(new ArrayList<Tile>());
             for(int Collum = 0; Collum < mapSize.getX(); Collum++){
-                if (Line == 0){tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, dirt), new Properties(new Vector2D(16, 16),true)));}
+                if (Collum == 0 || Line == 0 || Collum == mapSize.getX() - 1 || Line == mapSize.getY() - 1){tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, dirt), new Properties(new Vector2D(16, 16),true)));}
                 else {
                     tileList.getLast().add(new Tile(new Vector2D(Line * 16, Collum * 16), new Material(Color.GRAY, grass), new Properties(new Vector2D(16, 16), false)));
                 }
