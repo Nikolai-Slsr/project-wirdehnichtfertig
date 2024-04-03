@@ -46,13 +46,28 @@ public class Player {
 
     //
     public void updatePosition(float dT){
-        if(!collision.isCollidingTiles(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)){
+
+        if(!collision.isCollidingTiles(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)){ // only Update Position if not Colliding
             Position.setXY(calc.addVec2D(Position , calc.multVec2D (calc.normalize(DeltaPosition), Speed * dT * currentDashFactor))); //Adds DeltaPosition to Position to let player gain movement.
-            DeltaPosition.setXY(0,0);    //resets DeltaPosition.
             if (lastDashTime < System.currentTimeMillis() - 40  && isDashing){
                 currentDashFactor = 1;
                 isDashing = false;
-            }}
+            }
+        } else if (!collision.isCollidingTiles(calc.addVec2D(Position , calc.multVec2D (new Vector2D(0, calc.normalize(DeltaPosition).getY() ), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)) {
+            Position.setXY(calc.addVec2D(Position , calc.multVec2D (new Vector2D(0, calc.normalize(DeltaPosition).getY() ), Speed * dT * currentDashFactor)));
+            if (lastDashTime < System.currentTimeMillis() - 40  && isDashing){
+                currentDashFactor = 1;
+                isDashing = false;
+            }
+        }
+        else if (!collision.isCollidingTiles(calc.addVec2D(Position , calc.multVec2D (  new Vector2D( calc.normalize(DeltaPosition).getX() , 0 ), Speed * dT * currentDashFactor)) ,getHitbox(),TileMap)) {
+            Position.setXY(calc.addVec2D(Position , calc.multVec2D (new Vector2D( calc.normalize(DeltaPosition).getX() , 0 ), Speed * dT * currentDashFactor)));
+            if (lastDashTime < System.currentTimeMillis() - 40  && isDashing){
+                currentDashFactor = 1;
+                isDashing = false;
+            }
+        }
+        DeltaPosition.setXY(0,0);   //resets DeltaPosition.‚
 
     }
 

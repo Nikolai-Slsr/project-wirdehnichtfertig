@@ -9,13 +9,11 @@ import java.util.Objects;
 public class TileMap {
     // This will Store all Tiles and the Map
     private Vector2D mapSize;
-
-    private BufferedImage grass;
-    private BufferedImage dirt;
-
+    private final BufferedImage grass;
+    private final BufferedImage dirt;
     Calc  calc = new Calc();
     private ArrayList<ArrayList<Tile>> tileList = new ArrayList<>(); //Array that saves the whole tilemap with all it's tiles. tileList[Line][Collum]
-    private ArrayList<Tile> collisionMap = new ArrayList<>(); //Array that saves only Tiles that are relevant for Collision
+    private final ArrayList<Tile> collisionMap = new ArrayList<>(); //Array that saves only Tiles that are relevant for Collision
 
 
     //Constructor
