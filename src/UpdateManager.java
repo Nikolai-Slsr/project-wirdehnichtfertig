@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.File;
 
 public class UpdateManager {
 
@@ -7,22 +8,25 @@ public class UpdateManager {
     private Cam Camera1;
     private TileMap tileMap1;
     private Graphics2D g2d;
+
+    private WENVFileReader FileReader;
     private Vector2D Windowsize = new Vector2D(1280,720);
     private final GraphicPanel GP;
-
+    WENVFileReader Reader;
     private long deltaTime = 1;
     private long lastTime = System.nanoTime();
 
 
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
+        Reader = new WENVFileReader( new File("Maps/Standart Map.wenv"));
+        Reader.read();
+        tileMap1 = Reader.getTileMap();
+        Player1 = Reader.getPlayer();
+        Camera1 = new Cam(Player1.getPosition() , 100, 0.2f);
 
-        Camera1 = new Cam(new Vector2D(100,100) , 100, 0.2f);
-        tileMap1 = new TileMap(new Vector2D(50, 50));
-        Player1 = new Player(new Vector2D(100,100), 0.075f, 10, 300, tileMap1);
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
-
     }
 
 

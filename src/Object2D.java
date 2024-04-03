@@ -1,11 +1,11 @@
 import java.awt.*;
 
 public abstract class Object2D {
-    private Vector2D position;
+    protected Vector2D position;
 
-    private Material Material;
+    protected Material Material;
 
-    private Properties Properties;
+    protected Properties Properties;
 
     public Object2D(Vector2D position, Material material, Properties properties) {
         this.position = position;
