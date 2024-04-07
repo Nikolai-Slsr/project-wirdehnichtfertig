@@ -19,11 +19,12 @@ public class UpdateManager {
 
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
-        Reader = new WENVFileReader( new File("Maps/Standart Map.wenv"));
+        //Reader = new WENVFileReader( new File("Maps/Standart Map.wenv"));
+        Reader = new WENVFileReader( new File("Maps/Test.wenv"));
         Reader.read();
         tileMap1 = Reader.getTileMap();
         Player1 = Reader.getPlayer();
-        Camera1 = new Cam(Player1.getPosition() , 100, 0.2f);
+        Camera1 = new Cam(new Vector2D(Player1.getPosition().getX(),Player1.getPosition().getY()) , 100, 0.2f);
 
         this.GP = GP;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
@@ -37,12 +38,12 @@ public class UpdateManager {
         deltaTime = dT();
         this.g2d = g2d;
         Windowsize.setXY(GP.getWidth(),GP.getHeigth());
-
+        Camera1.update(Player1.getPosition(), deltaTime);
         if (Player1.isPosUpdateNeeded())
         {
             Player1.updatePosition(deltaTime);
         }
-        Camera1.update(Player1.getPosition(), deltaTime);
+        //Camera1.update(Player1.getPosition(), deltaTime);
         tileMap1.drawTiles(g2d,Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
         Player1.draw(g2d , Camera1.getPosition(), Camera1.getCamDist(),Windowsize);
     }

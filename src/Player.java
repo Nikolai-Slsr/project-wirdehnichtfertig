@@ -73,7 +73,7 @@ public class Player {
 
     /** This method determines if an update of the position is even needed. True upon DeltaPos being not (0,0) */
     public boolean isPosUpdateNeeded(){
-        return DeltaPosition.is(new Vector2D(0,0));
+        return !DeltaPosition.is(new Vector2D(0,0));
     }
 
     public void draw(Graphics2D g2d, Vector2D camPos, float CamDist, Vector2D WindowSize){
@@ -118,5 +118,6 @@ public class Player {
 
     public void setSpeed(float speed) {
         Speed = speed;
+
     }
 }

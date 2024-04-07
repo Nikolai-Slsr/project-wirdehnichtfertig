@@ -37,6 +37,6 @@ public class Vector2D {
 
     /** Compares this with another vector2D*/
     public boolean is(Vector2D vector2D) {
-        return !(this.x == vector2D.getX() && this.y == vector2D.getY());
+        return (this.x == vector2D.getX() && this.y == vector2D.getY());
     }
 }
