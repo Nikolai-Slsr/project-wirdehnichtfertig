@@ -20,7 +20,7 @@ public class UpdateManager {
     //Constructor:
     public UpdateManager(GraphicPanel GP) {
         //Reader = new WENVFileReader( new File("Maps/Standart Map.wenv"));
-        Reader = new WENVFileReader( new File("Maps/Test.wenv"));
+        Reader = new WENVFileReader( new File("Maps/Standart Map.wenv"));
         Reader.read();
         tileMap1 = Reader.getTileMap();
         Player1 = Reader.getPlayer();

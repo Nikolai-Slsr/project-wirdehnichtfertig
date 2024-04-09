@@ -15,12 +15,6 @@ public class Tile extends Object2D {
                 g2d.setColor(super.getMaterial().getColor());
                 g2d.fillRect((int) localPos.getX(), (int) localPos.getY(), (int) ((getProperties().getSize().getX()) / CamDist) + 1, (int) ((super.getProperties().getSize().getY() / CamDist) + 1));
             }
-            if (getProperties().getCollision()) {
-                g2d.setStroke(new BasicStroke(3));
-                g2d.setColor(new Color(0, 94, 255));
-
-                g2d.drawRect((int) localPos.getX(), (int)localPos.getY(), (int) ((getProperties().getSize().getX()) / CamDist) - 1, (int) ((super.getProperties().getSize().getY() / CamDist)) - 1);
-            }
         }
 
     }
